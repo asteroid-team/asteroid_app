@@ -55,8 +55,6 @@ if option == 'Source separation':
             st.write("The estimates")
             st.audio(est_s1_bytes)
             st.audio(est_s2_bytes)
-            st.write("The metrics")
-
             # st.json(metrics)
 
 if option == 'Speech enhancement':
