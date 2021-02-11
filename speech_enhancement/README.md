@@ -1,4 +1,5 @@
-in this folder you will find examples related to the speech enhancement task
+# Speech enhancement
+On this page, you will find examples related to the speech enhancement task
   (the speech of one speaker in a noisy environment is enhanced).
 The model ([DPTNet](https://arxiv.org/pdf/2007.13975.pdf)) was trained on [LibriMix](https://arxiv.org/pdf/2005.11262.pdf) with 16Khz data.
   
