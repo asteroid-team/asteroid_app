@@ -1,0 +1,43 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="DuplicatedCode" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="13">
+            <item index="0" class="java.lang.String" itemvalue="pytorch-lightning" />
+            <item index="1" class="java.lang.String" itemvalue="mir-eval" />
+            <item index="2" class="java.lang.String" itemvalue="pytest" />
+            <item index="3" class="java.lang.String" itemvalue="pylint" />
+            <item index="4" class="java.lang.String" itemvalue="librosa" />
+            <item index="5" class="java.lang.String" itemvalue="SoundFile" />
+            <item index="6" class="java.lang.String" itemvalue="pystoi" />
+            <item index="7" class="java.lang.String" itemvalue="torch" />
+            <item index="8" class="java.lang.String" itemvalue="torchvision" />
+            <item index="9" class="java.lang.String" itemvalue="pb_bss_eval" />
+            <item index="10" class="java.lang.String" itemvalue="asranger" />
+            <item index="11" class="java.lang.String" itemvalue="torch_stoi" />
+            <item index="12" class="java.lang.String" itemvalue="torch_optimizer" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8NamingInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="N802" />
+          <option value="N806" />
+          <option value="N803" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="directory" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

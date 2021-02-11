@@ -1,0 +1,6 @@
+{
+"mix_path": "/home/jcosentino/jcosentino/datasets//CHiME3/data/audio/16kHz/isolated/et05_caf_real/M05_441C020Z_CAF.CH6.wav",
+"input_wer": 0.02564102564102564,
+"clean_wer": 0.02564102564102564,
+"wer": 0.03205128205128205
+}

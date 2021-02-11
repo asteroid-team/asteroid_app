@@ -1,0 +1,13 @@
+{
+"input_si_sdr": -0.029856204986572266,
+"input_sdr": 0.04732541114438105,
+"input_sir": 0.04732541114440325,
+"input_sar": 149.11664681376715,
+"input_stoi": 0.6857395290057531,
+"si_sdr": 21.364944458007812,
+"sdr": 21.82916424252202,
+"sir": 31.52556626293896,
+"sar": 22.335508296618972,
+"stoi": 0.9792198573704631,
+"mix_path": "/srv/storage/talc3@talc-data.nancy/multispeech/calcul/users/mpariente/DATA/wsj0_wav/2speakers_wham/wav8k/max/tt/mix_clean/050a0511_2.4737_22ga010g_-2.4737.wav"
+}

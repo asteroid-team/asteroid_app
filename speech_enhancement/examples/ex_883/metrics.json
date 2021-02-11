@@ -1,0 +1,6 @@
+{
+"mix_path": "/home/jcosentino/jcosentino/datasets//CHiME3/data/audio/16kHz/isolated/et05_ped_real/M05_445C020J_PED.CH6.wav",
+"input_wer": 1.6923076923076923,
+"clean_wer": 1.6923076923076923,
+"wer": 1.2307692307692308
+}

@@ -1,0 +1,6 @@
+{
+"mix_path": "/home/jcosentino/jcosentino/datasets//CHiME3/data/audio/16kHz/isolated/et05_bus_real/F05_440C0202_BUS.CH3.wav",
+"input_wer": 0.08496732026143791,
+"clean_wer": 0.08496732026143791,
+"wer": 0.0784313725490196
+}
