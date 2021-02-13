@@ -1,1 +1,6 @@
+asteroid.egg==info
+torch==1.7.0
+numpy==1.19.4
+SoundFile==0.10.3.post1
 streamlit==0.76.0
+asteroid==0.4.1
