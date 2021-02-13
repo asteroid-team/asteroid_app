@@ -1,10 +1,16 @@
 import streamlit as st
 import os
-import json
+from asteroid.models import *
+import soundfile as sf
+import torch
+import numpy as np
+
+source_sep_folder = "source_separation/"
+speech_enh_folder = "speech_enhancement/"
 
 st.image(image="img/img.png")
 
-menu = ["Home", "Source separation", "Speech enhancement"]
+menu = ["Home", "Source separation", "Speech enhancement", "Try me"]
 
 option = st.sidebar.selectbox("Menu", menu)
 
@@ -12,9 +18,6 @@ if option == 'Home':
     with open("README.md") as f:
         readme = f.read()
     st.markdown(readme)
-
-source_sep_folder = "source_separation/"
-speech_enh_folder = "speech_enhancement/"
 
 if option == 'Source separation':
 
@@ -81,3 +84,88 @@ if option == 'Speech enhancement':
 
             st.write("The estimate")
             st.audio(est_s1_bytes)
+
+if option == 'Try me':
+
+    def read_array(array,sr):
+        sf.write('temp.wav', array, sr)
+        st.audio('temp.wav', format='audio/wav')
+        os.remove('temp.wav')
+        return
+
+
+    def normalize_estimates(est_np, mix_np):
+        """Normalizes estimates according to the mixture maximum amplitude
+
+        Args:
+            est_np (np.array): Estimates with shape (n_src, time).
+            mix_np (np.array): One mixture with shape (time, ).
+
+        """
+        mix_max = np.max(np.abs(mix_np))
+        return np.stack(
+            [est * mix_max / np.max(np.abs(est)) for est in est_np])
+
+    def select_model(model_name,task):
+        from asteroid.models.base_models import BaseModel
+        if task == "Speech enhancement":
+            # if model_name == "ConvTasNet":
+            #     path = "JorisCos/ConvTasNet_Libri1Mix_enhsingle_16k"
+            if model_name == "DPTNet":
+                path = "JorisCos/DPTNet_Libri1Mix_enhsingle_16k"
+            # elif model_name == "DPRNNTasNet":
+            #     path = "JorisCos/DPRNNTasNet-ks2_Libri1Mix_enhsingle_16k"
+            # elif model_name == "DCCRNet":
+            #     path = "JorisCos/DCCRNet_Libri1Mix_enhsingle_16k"
+            # elif model_name == "DCUNet":
+            #     path = "JorisCos/DCUNet_Libri1Mix_enhsingle_16k"
+        elif task == "Source separation":
+            if model_name == "ConvTasNet":
+                path = "JorisCos/ConvTasNet_Libri2Mix_sepclean_16k"
+            if model_name == "DPRNNTasNet":
+                path = "mpariente/DPRNNTasNet-ks2_WHAM_sepclean"
+        return BaseModel.from_pretrained(path)
+
+    task = st.selectbox(
+    'Select the task',
+    options = ['Source separation', 'Speech enhancement'])
+
+    if task == 'Source separation':
+        st.write("This model is trained with files with 16kHz data and 2 speakers."
+                 "Upload data accordingly.")
+        model = st.selectbox(
+            'Select the model',
+            options=['ConvTasNet'])
+
+        selected_model = select_model(model, task)
+        wav_file = st.file_uploader("Upload your file", type=['wav'])
+        if wav_file is not None:
+            mix, sr = sf.read(wav_file,dtype='float32')
+            st.write("Your mixture")
+            read_array(mix, sr)
+            torch_mix = torch.from_numpy(mix)
+            output = selected_model(torch_mix)
+            output = output.squeeze(0).cpu().data.numpy()
+            output_normalize = normalize_estimates(output,mix)
+            st.write("Our estimates")
+            read_array(output_normalize[0], sr)
+            read_array(output_normalize[1], sr)
+
+    elif task == 'Speech enhancement':
+        st.write("This model is trained with files with 16kHz data."
+                 "Upload data accordingly.")
+        model = st.selectbox(
+            'Select the model',
+            options=['DPTNet'])
+
+        selected_model = select_model(model, task)
+        wav_file = st.file_uploader("Upload your file", type=['wav'])
+        if wav_file is not None:
+            mix, sr = sf.read(wav_file, dtype='float32')
+            st.write("Your mixture")
+            read_array(mix, sr)
+            torch_mix = torch.from_numpy(mix)
+            output = selected_model(torch_mix)
+            output = output.squeeze().data.numpy()
+            st.write("Our estimate")
+            read_array(output, sr)
