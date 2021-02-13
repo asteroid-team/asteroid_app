@@ -131,7 +131,7 @@ if option == 'Try me':
     options = ['Source separation', 'Speech enhancement'])
 
     if task == 'Source separation':
-        st.write("This model is trained with files with 16kHz data and 2 speakers."
+        st.write("This model is trained with files with 16kHz data and 2 speakers. "
                  "Upload data accordingly.")
         model = st.selectbox(
             'Select the model',
@@ -152,7 +152,7 @@ if option == 'Try me':
             read_array(output_normalize[1], sr)
 
     elif task == 'Speech enhancement':
-        st.write("This model is trained with files with 16kHz data."
+        st.write("This model is trained with files with 16kHz data. "
                  "Upload data accordingly.")
         model = st.selectbox(
             'Select the model',
